@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">Web Service Carros</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Títulos nas UIs -->
+    <string name="title_fragment_listcarros">Lista de Carros</string>
+    <string name="title_fragment_detalhecarro">Detalhes do Carro</string>
+    <string name="title_fragment_edicaocarro">Edição do Carro</string>
+    <string name="title_fragment_novocarro">Novo Carro</string>
+
+    <!-- Navigation Drawer -->
+    <string name="nav_listcarros">Lista de Carros</string>
+    <string name="nav_sobre">Sobre</string>
+    <string name="nav_configuracoes">Configurações</string>
+
+    <!-- Menu em menu_fragment_listcarro.xml -->
+    <string name="action_pesquisar">Pesquisar</string>
+    <string name="action_novo">Novo</string>
+
+    <!-- Menu em menu_fragment_edicaocarro.xml-->
+    <string name="action_salvar">Salvar</string>
+    <string name="action_excluir">Excluir</string>
+
+    <!-- Menu em menu_fragment_detalhecarro.xml -->
+    <string name="action_editar">Editar</string>
+
+    <!-- Tipo de Carros, como é persistido no BD -->
+    <string name="tipo_todos">todos</string>
+    <string name="tipo_classicos">classicos</string>
+    <string name="tipo_esportivos">esportivos</string>
+    <string name="tipo_luxo">luxo</string>
+
+    <!-- Tabs -->
+    <string name="tabs_todos">Todos</string>
+    <string name="tabs_classicos">Clássicos</string>
+    <string name="tabs_esportivos">Esportivos</string>
+    <string name="tabs_luxo">Luxo</string>
+
+    <!-- Textos para os layouts dos Fragmentos Novo, Detalhe e Edicao -->
+    <string name="tipo_textview">Tipo:</string>
+    <string name="nome_textview">Nome:</string>
+    <string name="desc_textview">Descrição:</string>
+    <string name="Foto_textview">Foto:</string>
+    <string name="Info_textview">Vídeo:</string>
+    <string name="latitude_textview">Latitude:</string>
+    <string name="longitude_textview">Longitude:</string>
+    <string name="urlfoto_textview">URL Foto</string>
+    <string name="urlvideo_textview">URL Vídeo</string>
+
+    <!-- Alert Dialog, util.AlertUtils.java-->
+    <string name="alertdialog_message_rest">Operação realizada com sucesso.</string>
+    <string name="alertdialog_buttom_ok">OK</string>
+    <string name="alertdialog_message_erro_download">Falha ao executar o download.</string>
+
+    <!-- ProgressDialog -->
+    <string name="progressdialog_wait">Processando ... Aguarde.</string>
+
+    <!-- Mensagens validações -->
+    <!-- NovoCarroFragment.java -->
+    <string name="val_dadosinputs">Você deve inserir pelo menos o nome do carro.</string>
+
+</resources>

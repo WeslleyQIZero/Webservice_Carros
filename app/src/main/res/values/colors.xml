@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Cores do Tema Material http://www.google.com/design/spec/style/color.html#color-color-palette -->
+    <!-- Tema baseado nas cores do IF -->
+    <color name="colorPrimary">#2E7D32</color>
+    <color name="colorPrimaryDark">#1B5E20</color>
+    <color name="colorAccent">#D50000</color>
+    <color name="control_highlight">#B3E5FC</color>
+
+    <!-- Outras cores -->
+    <color name="transparent">#0000</color>
+    <color name="white">#fff</color>
+    <color name="black">#000</color>
+    <color name="blue">#00f</color>
+    <color name="red">#f00</color>
+    <color name="green">#0f0</color>
+    <color name="gray">#eee</color>
+    <color name="yellow">#fff000</color>
+
+    <!-- SwipeRefreshLayout -->
+    <color name="refresh_progress_1">#0f0</color>
+    <color name="refresh_progress_2">#1B5E20</color>
+    <color name="refresh_progress_3">#D50000</color>
+</resources>
