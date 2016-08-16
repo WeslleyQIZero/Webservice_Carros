@@ -5,5 +5,5 @@ package aulas.ddmi.webservice_carros.model;
  */
 public class ServiceBase {
     protected static final String TAG = "Webservice_Carros";
-    protected static final String URL_BASE = "http://192.168.1.80:8084/rest";
+    protected static final String URL_BASE = "http://192.168.0.101:8084/rest";
 }

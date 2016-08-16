@@ -52,6 +52,7 @@
         </activity>
 
         <activity android:name=".control.CarroActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".control.CarrosActivity">
 
         </activity>

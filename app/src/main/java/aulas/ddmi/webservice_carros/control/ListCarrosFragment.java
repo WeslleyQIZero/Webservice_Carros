@@ -60,7 +60,6 @@ public class ListCarrosFragment extends Fragment implements SearchView.OnQueryTe
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "Chamou onDestroy da ListCarroFragment.");
         getActivity().finish(); //finaliza a app
     }
 
