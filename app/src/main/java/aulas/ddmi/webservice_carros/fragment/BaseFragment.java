@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * Created by vagner on 13/09/16.
@@ -18,8 +19,13 @@ public class BaseFragment extends Fragment {
     //uma caixa de progressão com uma animação de progressão
     private ProgressDialog mProgressDialog;
 
+    //Toast
+    protected void toast(int msg) {
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+
     //Mensagem de alerta com botão Ok
-    public static void alertDialog(final Context context, final int title, final int mensagem) {
+    public static void alertOk(final Context context, final int title, final int mensagem) {
         try {
             AlertDialog dialog = new AlertDialog.Builder(context).setTitle(title).setMessage(mensagem).create();
             dialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {

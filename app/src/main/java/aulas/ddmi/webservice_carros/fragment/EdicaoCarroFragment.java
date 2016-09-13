@@ -1,5 +1,7 @@
 package aulas.ddmi.webservice_carros.fragment;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,14 +32,15 @@ import aulas.ddmi.webservice_carros.service.CarroService;
 public class EdicaoCarroFragment extends BaseFragment {
 
     private Carro carro; //uma instância da classe Carro com escopo global para utilização em membros da classe
-    private ProgressBar progressBarRest;  //uma progressbar para informar o processamento REST
     //componentes <-> objeto carro
+    private ImageView imageViewFoto; //campo referente ao atributo url_foto
     private RadioButton rbClassicos, rbEsportivos, rbLuxo; //campos referente ao tipo do objeto carro
     private EditText editTextNome; //campo referente ao atributo nome do objeto carro
     private EditText editTextDescricao; //campo referente ao atributo descrição do objeto carro
     private EditText editTextLatitude;  //campo referente ao atributo latitude do objeto carro
     private EditText editTextLongitude; //campo referente ao atributo longitude do objeto carro
-
+    private EditText editTextUrlVideo; //campo referente ao atributo url_video do objeto carro
+    ProgressBar progressBarCard0; //progressBar do Card0, do container na imagem do carro
 
     //utilizado pelo Fragment para repassar o objeto carro clicado na lista pelo user
     public void setCarro(Carro carro) {
@@ -63,18 +66,34 @@ public class EdicaoCarroFragment extends BaseFragment {
         Log.d(TAG, "Dados do registro = " + carro);
 
         //carrega a imagem e controla o progressbar
+        //carrega a imagem e controla o progressbar
         Log.d(TAG, "URL foto = " + carro.urlFoto); //um log para depurar
-        ImageView imageView = (ImageView) view.findViewById(R.id.imv_card0_fredicaocarro);
-        final ProgressBar progressBarCard0 = (ProgressBar) view.findViewById(R.id.pb_card0_fredicaocarro);
-        Picasso.with(getContext()).load(carro.urlFoto).fit().into(imageView, new Callback() {
-            @Override
-            public void onSuccess() {
-                progressBarCard0.setVisibility(View.GONE);
-            }
+        imageViewFoto = (ImageView) view.findViewById(R.id.imv_card0_fredicaocarro);
+        if(carro.urlFoto != null){
+            progressBarCard0 = (ProgressBar) view.findViewById(R.id.pb_card0_fredicaocarro);
+            Picasso.with(getContext()).load(carro.urlFoto).fit().into(imageViewFoto, new Callback() {
+                @Override
+                public void onSuccess() {
+                    progressBarCard0.setVisibility(View.GONE);
+                }
 
+                @Override
+                public void onError() {
+                    progressBarCard0.setVisibility(View.GONE);
+                }
+            });
+        }else{
+            imageViewFoto.setImageResource(R.drawable.car_background);
+        }
+        imageViewFoto.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onError() {
-                progressBarCard0.setVisibility(View.GONE);
+            public void onClick(View view) {
+                //cria uma Intent
+                //primeiro argumento: ação ACTION_PICK "escolha um item a partir dos dados e retorne o seu URI"
+                //segundo argumento: refina a ação para arquivos de imagem, retornando um URI
+                Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                //inicializa uma Activity. Neste caso, uma que forneca acesso a galeria de imagens do dispositivo.
+                startActivityForResult(Intent.createChooser(intent, "Selecione uma imagem"), 0);
             }
         });
 
@@ -105,9 +124,23 @@ public class EdicaoCarroFragment extends BaseFragment {
         editTextLatitude.setText(carro.latitude);
         editTextLongitude.setText(carro.longitude);
 
-        //ProgressBar
-        progressBarRest = (ProgressBar) view.findViewById(R.id.pb_fredicaocarro);
-        progressBarRest.setVisibility(View.INVISIBLE);
+        //carrega o vídeo
+        Log.d(TAG, "URL vídeo = " + carro.urlVideo); //um log para depurar
+        editTextUrlVideo = (EditText) view.findViewById(R.id.etURLVideo__card4_fredicaocarro);
+        if(carro.urlVideo != null){
+            editTextUrlVideo.setText(Uri.parse(carro.urlVideo).toString());
+        }
+        editTextUrlVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //cria uma Intent
+                //primeiro argumento: ação ACTION_PICK "escolha um item a partir dos dados e retorne o seu URI"
+                //segundo argumento: refina a ação para arquivos de vídeo, retornando um URI
+                Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
+                //inicializa uma Activity. Neste caso, uma que forneca acesso a galeria de imagens do dispositivo.
+                startActivityForResult(Intent.createChooser(intent, "Selecione uma imagem"), 0);
+            }
+        });
 
         return view;
     }
@@ -151,6 +184,25 @@ public class EdicaoCarroFragment extends BaseFragment {
         return false;
     }
 
+    /**
+     * Método que recebe o retorno da Activity de galeria de imagens.
+     */
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == getActivity().RESULT_OK){
+            Log.d(TAG, data.toString());
+            Uri arquivoUri = data.getData(); //obtém o URI
+            Log.d(TAG, "URI do arquivo: " + arquivoUri);
+            if(arquivoUri.toString().contains("images")) {
+                imageViewFoto.setImageURI(arquivoUri); //coloca a imagem no ImageView
+                carro.urlFoto = arquivoUri.toString(); //armazena o Uri da imagem no objeto do modelo
+            }else if(arquivoUri.toString().contains("video")) {
+                //editTextUrlVideo.setText(arquivoUri.toString()); //coloca a URL do vídeo no EditText
+                carro.urlVideo = arquivoUri.toString(); //armazena o Uri do vídeo no objeto do modelo
+            }
+        }
+    }
 
     /*
         Classe interna que extende uma AsyncTask.
@@ -161,7 +213,6 @@ public class EdicaoCarroFragment extends BaseFragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressBarRest.setVisibility(View.VISIBLE); //faz aparecer a ProgressBar
         }
 
         @Override
@@ -190,9 +241,8 @@ public class EdicaoCarroFragment extends BaseFragment {
         protected void onPostExecute(Boolean aBoolean) {
             super.onPostExecute(aBoolean);
             if(aBoolean){
-                progressBarRest.setVisibility(View.INVISIBLE); //faz desaparecer a ProgressBar
                 //faz aparecer uma caixa de diálogo confirmando a operação
-                alertDialog(getContext(), R.string.title_confirmacao, R.string.msg_realizadocomsucesso);
+                alertOk(getContext(), R.string.title_confirmacao, R.string.msg_realizadocomsucesso);
                 //volta para a lista de carros
                 getActivity().finish();
             }

@@ -1,7 +1,10 @@
 package aulas.ddmi.webservice_carros.fragment;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -35,8 +38,8 @@ public class NovoCarroFragment extends BaseFragment {
     private EditText editTextDescricao; //campo referente ao atributo descrição do objeto carro
     private EditText editTextLatitude;  //campo referente ao atributo latitude do objeto carro
     private EditText editTextLongitude; //campo referente ao atributo longitude do objeto carro
-    private EditText editTextURLFoto;  //campo referente ao atributo url_foto do objeto carro
-    private EditText editTextURLVideo; //campo referente ao atributo url_video do objeto carro
+    private ImageView imageViewFoto;  //campo referente ao atributo url_foto do objeto carro
+    private EditText editTextUrlVideo; //campo referente ao atributo url_video do objeto carro
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,9 +60,18 @@ public class NovoCarroFragment extends BaseFragment {
 
         //mapeia e inicializa os componentes da UI
         //Card0
-        ImageView imageView = (ImageView) view.findViewById(R.id.imv_card0_frnovocarro);
-        progressBarImg = (ProgressBar) view.findViewById(R.id.pb_card0_frnovocarro);
-        progressBarImg.setVisibility(View.INVISIBLE);
+        imageViewFoto = (ImageView) view.findViewById(R.id.imv_card0_frnovocarro);
+        imageViewFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //cria uma Intent
+                //primeiro argumento: ação ACTION_PICK "escolha um item a partir dos dados e retorne o seu URI"
+                //segundo argumento: refina a ação para arquivos de imagem, retornando um URI
+                Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                //inicializa uma Activity. Neste caso, uma que forneca acesso a galeria de imagens do dispositivo.
+                startActivityForResult(Intent.createChooser(intent, "Selecione uma imagem"), 0);
+            }
+        });
         //Card1
         rbClassicos = (RadioButton) view.findViewById(R.id.rb_classicos_card1_frnovocarro);
         rbClassicos.setChecked(true);
@@ -72,8 +84,18 @@ public class NovoCarroFragment extends BaseFragment {
         editTextLatitude = (EditText) view.findViewById(R.id.etlatitude_card3_frnovocarro);
         editTextLongitude = (EditText) view.findViewById(R.id.etlongitude_card3_frnovocarro);
         //Card4
-        editTextURLFoto = (EditText) view.findViewById(R.id.eturlfoto_card4_frnovocarro);
-        editTextURLVideo = (EditText) view.findViewById(R.id.eturlvideo_card4_frnovocarro);
+        editTextUrlVideo = (EditText) view.findViewById(R.id.etURLVideo__card4_frnovocarro);
+        editTextUrlVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //cria uma Intent
+                //primeiro argumento: ação ACTION_PICK "escolha um item a partir dos dados e retorne o seu URI"
+                //segundo argumento: URI
+                Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
+                //inicializa uma Activity. Neste caso, uma que forneca acesso a galeria de imagens do dispositivo.
+                startActivityForResult(Intent.createChooser(intent, "Selecione uma imagem"), 0);
+            }
+        });
 
         return view;
     }
@@ -101,16 +123,6 @@ public class NovoCarroFragment extends BaseFragment {
                     carro.desc = editTextDescricao.getText().toString();
                     carro.latitude = editTextLatitude.getText().toString();
                     carro.longitude = editTextLongitude.getText().toString();
-                    if(editTextURLFoto.getText().toString().isEmpty()){
-                        carro.urlFoto = null; //para evitar problemas com bibliotecas de terceiros
-                    }else{
-                        carro.urlFoto = editTextURLFoto.getText().toString();
-                    }
-                    if(editTextURLVideo.getText().toString().isEmpty()){
-                        carro.urlVideo = null; //para evitar problemas com bibliotecas de terceiros
-                    }else{
-                        carro.urlVideo = editTextURLVideo.getText().toString();
-                    }
                     if(rbClassicos.isChecked()){
                         carro.tipo = getContext().getResources().getString(R.string.tipo_classicos);
                     }else if(rbEsportivos.isChecked()){
@@ -127,6 +139,26 @@ public class NovoCarroFragment extends BaseFragment {
         }
 
         return false;
+    }
+
+    /**
+     * Método que recebe o retorno da Activity de galeria de imagens.
+     */
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == getActivity().RESULT_OK){
+            Log.d(TAG, data.toString());
+            Uri arquivoUri = data.getData(); //obtém o URI da imagem
+            Log.d(TAG, "URI do arquivo: " + arquivoUri);
+            if(arquivoUri.toString().contains("images")) {
+                imageViewFoto.setImageURI(arquivoUri); //coloca a imagem no ImageView
+                carro.urlFoto = arquivoUri.toString(); //armazena o Uri para salvar a imagem no objeto imagem
+            }else if(arquivoUri.toString().contains("video")) {
+                editTextUrlVideo.setText(arquivoUri.toString()); //coloca a URL do vídeo no EditText
+                carro.urlVideo = arquivoUri.toString(); //armazena o URL do vídeo no objeto do modelo
+            }
+        }
     }
 
     /*
@@ -160,7 +192,7 @@ public class NovoCarroFragment extends BaseFragment {
             if(aBoolean){
                 dismissWait(); //fecha a caixa processando
                 //faz aparecer uma caixa de diálogo confirmando a operação
-                alertDialog(getContext(), R.string.title_confirmacao, R.string.msg_realizadocomsucesso);
+                alertOk(getContext(), R.string.title_confirmacao, R.string.msg_realizadocomsucesso);
                 //volta para a lista de carros
                 getActivity().finish();
             }

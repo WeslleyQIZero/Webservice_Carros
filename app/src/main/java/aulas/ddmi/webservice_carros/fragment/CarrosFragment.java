@@ -106,7 +106,7 @@ public class CarrosFragment extends BaseFragment
         if (isNetworkAvailable(getContext())) {
             new CarrosTask().execute(); //executa a operação REST GET em uma thread AsyncTask
         } else {
-            alertDialog(getContext(), R.string.title_conectividade, R.string.msg_conectividade);
+            alertOk(getContext(), R.string.title_conectividade, R.string.msg_conectividade);
         }
 
         return view;
@@ -212,7 +212,7 @@ public class CarrosFragment extends BaseFragment
                 //faz com que a ProgressBar desapareça para o usuário
                 progressBar.setVisibility(View.INVISIBLE);
                 //avisa o usuário da falha no download
-                alertDialog(getContext(), R.string.title_erro, R.string.msg_erro_falhanodownload); //faz aparecer o AlertDialog para o usuário
+                alertOk(getContext(), R.string.title_erro, R.string.msg_erro_falhanodownload); //faz aparecer o AlertDialog para o usuário
             }
         }
     }
@@ -252,7 +252,7 @@ public class CarrosFragment extends BaseFragment
                 if (isNetworkAvailable(getContext())) { //se houver conexão com a internet, wi-fi ou 3G ...
                     new CarrosTask().execute(); //cria uma instância de AsyncTask
                 } else {
-                    alertDialog(getContext(), R.string.title_conectividade, R.string.msg_conectividade);
+                    alertOk(getContext(), R.string.title_conectividade, R.string.msg_conectividade);
                     recyclerView.setAdapter(new CarroAdapter(getContext(), new ArrayList<Carro>(), onClickCarro()));
                 }
 

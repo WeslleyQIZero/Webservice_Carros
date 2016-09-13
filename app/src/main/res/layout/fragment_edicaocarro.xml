@@ -26,18 +26,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <ProgressBar
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/pb_card0_fredicaocarro" />
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:id="@+id/imv_card0_fredicaocarro"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:src="@drawable/car_background" />
 
-                <ProgressBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/pb_card0_fredicaocarro"
-                    android:layout_gravity="center" />
             </FrameLayout>
+
 
         </android.support.v7.widget.CardView>
 
@@ -125,7 +129,7 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            android:id="@+id/cardview_detalhe_4"
+            android:id="@+id/cardview_detalhe_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
@@ -168,15 +172,39 @@
 
         </android.support.v7.widget.CardView>
 
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardview_detalhe_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:clickable="true"
+            card_view:cardBackgroundColor="@color/white"
+            card_view:cardCornerRadius="2dp"
+            card_view:cardElevation="6dp"
+            android:foreground="?attr/selectableItemBackground" >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/urlvideo_textview"
+                    android:id="@+id/textView6" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etURLVideo__card4_fredicaocarro"
+                    android:focusable="false"
+                    android:hint="@string/urlvideo_hint" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
     </LinearLayout>
 
     </ScrollView>
-
-    <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/pb_fredicaocarro"
-        android:layout_gravity="center" />
 
 </FrameLayout>

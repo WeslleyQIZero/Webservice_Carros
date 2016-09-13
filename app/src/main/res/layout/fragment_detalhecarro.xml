@@ -22,36 +22,38 @@
             card_view:cardElevation="6dp"
             android:foreground="?attr/selectableItemBackground" >
 
-            <FrameLayout
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:orientation="vertical"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvNome_card0_frdetalhecarro"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="normal" />
+
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
-                        android:layout_width="match_parent"
+                    <ProgressBar
+                        style="?android:attr/progressBarStyleSmall"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/tvNome_card0_frdetalhecarro"
-                        android:textSize="18dp"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textStyle="normal" />
+                        android:id="@+id/pb_card0_frdetalhecarro"
+                        android:layout_gravity="center" />
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:id="@+id/imv_card0_frdetalhecarro"
-                        android:layout_gravity="center" />
-                </LinearLayout>
-
-                <ProgressBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/pb_card0_frdetalhecarro"
-                    android:layout_gravity="center" />
-            </FrameLayout>
+                        android:layout_gravity="center"
+                        android:src="@drawable/car_background" />
+                </FrameLayout>
+            </LinearLayout>
 
         </android.support.v7.widget.CardView>
 
@@ -195,7 +197,7 @@
                        android:layout_width="match_parent"
                        android:layout_height="320dp"
                        android:layout_margin="12dp"
-                       tools:context=".fragment.DetalheCarroFragment"/>
+                       tools:context="aulas.ddmi.webservice_carros.control.DetalheCarroFragment"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -224,17 +226,18 @@
                     android:id="@+id/videoView_card4_frdetalhecarro"
                     android:layout_gravity="center" />
 
+                <ProgressBar
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/pb_card4_fredetalhecarro" />
+
                 <ImageView
                     android:layout_width="91dp"
                     android:layout_height="91dp"
                     android:id="@+id/imageView_card4_fradetalhecarro"
-                    android:src="@drawable/play"
-                    android:layout_gravity="center" />
-
-                <ProgressBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/pb_card4_frdetalhe"
+                    android:src="@android:drawable/ic_media_play"
                     android:layout_gravity="center" />
 
             </FrameLayout>
@@ -243,12 +246,5 @@
 
     </LinearLayout>
     </ScrollView>
-
-    <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/pb_frdetalhecarro"
-        android:layout_gravity="center" />
 
 </FrameLayout>

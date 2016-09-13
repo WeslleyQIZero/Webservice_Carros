@@ -1,9 +1,10 @@
 package aulas.ddmi.webservice_carros.model;
 
 /**
- * Created by Ricardo Lecheta on 06/11/2014.
+ * Created by vagner on 15/05/16.
  */
 
+import android.graphics.Bitmap;
 import android.os.Parcelable;
 
 import java.io.Serializable;
@@ -22,15 +23,15 @@ public class Carro implements Serializable {
 
     @Override
     public String toString() {
-        return "Carro{"
-                + "id='" + id + '\''
-                + ", tipo='" + tipo + '\''
-                + ", nome='" + nome + '\''
-                + ", desc='" + desc + '\''
-                + ", urlFoto='" + urlFoto + '\''
-                + ", urlVideo='" + urlVideo + '\''
-                + ", latitude='" + latitude + '\''
-                + ", longitude='" + longitude + '\''
-                + '}';
+        return "Carro{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", desc='" + desc + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", urlFoto='" + urlFoto + '\'' +
+                ", urlVideo='" + urlVideo + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
+                '}';
     }
 }

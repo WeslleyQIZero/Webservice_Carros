@@ -2,10 +2,10 @@ package aulas.ddmi.webservice_carros.fragment;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -32,7 +32,6 @@ import com.squareup.picasso.Picasso;
 
 import aulas.ddmi.webservice_carros.R;
 import aulas.ddmi.webservice_carros.activity.CarroActivity;
-import aulas.ddmi.webservice_carros.activity.CarrosActivity;
 import aulas.ddmi.webservice_carros.model.Carro;
 
 /**
@@ -41,7 +40,6 @@ import aulas.ddmi.webservice_carros.model.Carro;
 public class DetalheCarroFragment extends BaseFragment implements OnMapReadyCallback {
 
     private Carro carro; //uma instância da classe Carro com escopo global para utilização em membros da classe
-    private ProgressBar progressBarRest;  //uma progressbar para informar o processamento REST
     //componentes <-> objeto carro
     private RadioButton rbClassicos, rbEsportivos, rbLuxo; //campos referente ao tipo do objeto carro
     private TextView textViewNome; //campo referente ao atributo nome do objeto carro
@@ -79,20 +77,23 @@ public class DetalheCarroFragment extends BaseFragment implements OnMapReadyCall
         //carrega a imagem e controla o progressbar
         Log.d(TAG, "URL foto = " + carro.urlFoto); //um log para depurar
         imageView = (ImageView) view.findViewById(R.id.imv_card0_frdetalhecarro);
-        imageView.requestFocus();
-        progressBarCard0 = (ProgressBar) view.findViewById(R.id.pb_card0_frdetalhecarro);
-        Picasso.with(getContext()).load(carro.urlFoto).fit().into(imageView, new Callback() {
-            @Override
-            public void onSuccess() {
-                progressBarCard0.setVisibility(View.GONE);
-            }
+        if(carro.urlFoto != null){
+            progressBarCard0 = (ProgressBar) view.findViewById(R.id.pb_card0_frdetalhecarro);
+            Picasso.with(getContext()).load(carro.urlFoto).fit().into(imageView, new Callback() {
+                @Override
+                public void onSuccess() {
+                    progressBarCard0.setVisibility(View.GONE);
+                }
 
-            @Override
-            public void onError() {
-                progressBarCard0.setVisibility(View.GONE);
-            }
-        });
-        //new TaskImagem().execute(); //busca a foto do carro no servidor e insere na ImageView
+                @Override
+                public void onError() {
+                    progressBarCard0.setVisibility(View.GONE);
+                }
+            });
+        }else{
+            imageView.setImageResource(R.drawable.car_background);
+        }
+
 
         //carrega o tipo nos RadioButtons
         Log.d(TAG, "Tipo = " + carro.tipo); //um log para depurar
@@ -125,26 +126,30 @@ public class DetalheCarroFragment extends BaseFragment implements OnMapReadyCall
         // Inicia o Google Maps dentro do fragment
         mapFragment.getMapAsync(this);
 
-        //video //Só suporta os formatos aceitos nativamente pelo Android
+        //carrega  o video
+        //Só suporta os formatos aceitos nativamente pelo Android
         Log.d(TAG, "URL Vídeo = " + carro.urlVideo); //um log para depurar
         videoView = (VideoView) view.findViewById(R.id.videoView_card4_frdetalhecarro);
+        progressBarCard4 = (ProgressBar) view.findViewById(R.id.pb_card4_fredetalhecarro);
         final ImageView imageViewPlayVideo = (ImageView) view.findViewById(R.id.imageView_card4_fradetalhecarro);
-        progressBarCard4 = (ProgressBar) view.findViewById(R.id.pb_card4_frdetalhe);
-        progressBarCard4.setVisibility(View.INVISIBLE);
         imageViewPlayVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imageViewPlayVideo.setVisibility(View.INVISIBLE);
-                videoView.setMediaController(new MediaController(getContext()));
-                videoView.setVideoURI(Uri.parse(carro.urlVideo));
-                videoView.start();
-
+                if(carro.urlVideo != null){
+                    imageViewPlayVideo.setVisibility(View.INVISIBLE);
+                    videoView.setMediaController(new MediaController(getContext()));
+                    videoView.setVideoURI(Uri.parse(carro.urlVideo));
+                    videoView.start();
+                }else{
+                    toast(R.string.msg_toast_naohavideo);
+                }
             }
         });
 
-        //ProgressBar
-        progressBarRest = (ProgressBar) view.findViewById(R.id.pb_frdetalhecarro);
-        progressBarRest.setVisibility(View.INVISIBLE);
+        //isso deve ser ajustado na próxima versão
+        progressBarCard4.setVisibility(View.INVISIBLE);
+
+
 
         return view;
     }

@@ -44,7 +44,7 @@ public class CarroAdapter extends RecyclerView.Adapter<CarroAdapter.CarrosViewHo
     @Override
     public CarrosViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Infla a view do layout
-        View view = LayoutInflater.from(context).inflate(R.layout.adapter_reciclerview_frlistcarros, viewGroup, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.adapter_carros, viewGroup, false);
 
         // Cria o ViewHolder
         CarrosViewHolder holder = new CarrosViewHolder(view);
@@ -96,7 +96,7 @@ public class CarroAdapter extends RecyclerView.Adapter<CarroAdapter.CarrosViewHo
             super(view);
             // Cria as views para salvar no ViewHolder
             tNome = (TextView) view.findViewById(R.id.text);
-            img = (ImageView) view.findViewById(R.id.img);
+            img = (ImageView) view.findViewById(R.id.img_adapter);
             progress = (ProgressBar) view.findViewById(R.id.progressbar_cardviewadapter);
         }
     }

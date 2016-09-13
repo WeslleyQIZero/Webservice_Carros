@@ -22,22 +22,13 @@
             card_view:cardElevation="6dp"
             android:foreground="?attr/selectableItemBackground" >
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imv_card0_frnovocarro"
-                    android:layout_gravity="center" />
-
-                <ProgressBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/pb_card0_frnovocarro"
-                    android:layout_gravity="center" />
-            </FrameLayout>
+            <ImageView
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                android:id="@+id/imv_card0_frnovocarro"
+                android:text="URL da foto"
+                android:layout_gravity="center"
+                android:src="@drawable/car_background" />
 
         </android.support.v7.widget.CardView>
 
@@ -179,7 +170,6 @@
             card_view:cardElevation="6dp"
             android:foreground="?attr/selectableItemBackground" >
 
-
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -188,30 +178,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/urlfoto_textview"
+                    android:text="@string/urlvideo_textview"
                     android:id="@+id/textView6" />
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/eturlfoto_card4_frnovocarro" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/urlvideo_textview"
-                    android:id="@+id/textView7" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/eturlvideo_card4_frnovocarro" />
+                    android:id="@+id/etURLVideo__card4_frnovocarro"
+                    android:focusable="false"
+                    android:hint="@string/urlvideo_hint" />
             </LinearLayout>
-
         </android.support.v7.widget.CardView>
-
 
     </LinearLayout>
 

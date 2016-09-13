@@ -29,7 +29,7 @@
                     android:textStyle="normal" />
 
                 <ImageView
-                    android:id="@+id/img"
+                    android:id="@+id/img_adapter"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                      />

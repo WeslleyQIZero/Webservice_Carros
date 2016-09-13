@@ -51,6 +51,7 @@
     <string name="longitude_textview">Longitude:</string>
     <string name="urlfoto_textview">URL Foto</string>
     <string name="urlvideo_textview">URL Vídeo</string>
+    <string name="urlvideo_hint">Clique para obter a URL</string>
 
     <!-- Alert Dialog -->
     <string name="title_conectividade">Alerta de conectividade.</string>
@@ -64,8 +65,9 @@
     <!-- ProgressDialog -->
     <string name="progressdialog_wait">Processando ... Aguarde.</string>
 
-    <!-- Mensagens validações -->
-    <!-- NovoCarroFragment.java -->
+    <!-- Mensagens Toasts -->
+    <string name="msg_toast_naohavideo">Não há vídeo cadastrado.</string>
+
     <string name="val_dadosinputs">Você deve inserir pelo menos o nome do carro.</string>
 
 </resources>
