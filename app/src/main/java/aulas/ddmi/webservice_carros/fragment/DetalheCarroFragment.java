@@ -1,4 +1,4 @@
-package aulas.ddmi.webservice_carros.control;
+package aulas.ddmi.webservice_carros.fragment;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -32,14 +31,15 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import aulas.ddmi.webservice_carros.R;
+import aulas.ddmi.webservice_carros.activity.CarroActivity;
+import aulas.ddmi.webservice_carros.activity.CarrosActivity;
 import aulas.ddmi.webservice_carros.model.Carro;
 
 /**
  * Created by vagner on 28/05/16.
  */
-public class DetalheCarroFragment extends Fragment implements OnMapReadyCallback {
+public class DetalheCarroFragment extends BaseFragment implements OnMapReadyCallback {
 
-    private final String TAG = "Webservice_Carros"; //TAG para o LogCat
     private Carro carro; //uma instância da classe Carro com escopo global para utilização em membros da classe
     private ProgressBar progressBarRest;  //uma progressbar para informar o processamento REST
     //componentes <-> objeto carro
@@ -53,6 +53,10 @@ public class DetalheCarroFragment extends Fragment implements OnMapReadyCallback
     ProgressBar progressBarCard0; //progressBar do Card0, do container na imagem do carro
     ProgressBar progressBarCard4; //progressBar do Card4, do container na vídeo do carro
 
+    //utilizado pela Activity para repassar o objeto carro para este fragmento
+    public void setCarro(Carro carro) {
+        this.carro = carro;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,9 +73,8 @@ public class DetalheCarroFragment extends Fragment implements OnMapReadyCallback
 
         ((CarroActivity) getActivity()).getSupportActionBar().setTitle(R.string.title_fragment_detalhecarro); //um título para a janela
 
-        //obtém o objeto passado como argumento na chamada deste fragment
-        carro = CarrosActivity.carro;
-        Log.d(TAG, "Dados do registro = " + carro); //um log para depurar
+        //um log para depurar
+        Log.d(TAG, "Dados do registro = " + carro);
 
         //carrega a imagem e controla o progressbar
         Log.d(TAG, "URL foto = " + carro.urlFoto); //um log para depurar
@@ -163,7 +166,9 @@ public class DetalheCarroFragment extends Fragment implements OnMapReadyCallback
         switch (item.getItemId()) {
             case R.id.menuitem_editar: {
                 //Substitui o Fragmento no container R.id.fragment_container, componente do layout content_main.xml
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EdicaoCarroFragment()).commit();
+                EdicaoCarroFragment edicaocarroFragment = new EdicaoCarroFragment();
+                edicaocarroFragment.setCarro(this.carro);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, edicaocarroFragment).commit();
                 break;
             }
         }

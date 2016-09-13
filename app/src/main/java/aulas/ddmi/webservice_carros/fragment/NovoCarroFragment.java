@@ -1,8 +1,7 @@
-package aulas.ddmi.webservice_carros.control;
+package aulas.ddmi.webservice_carros.fragment;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,14 +17,14 @@ import android.widget.Toast;
 import java.io.IOException;
 
 import aulas.ddmi.webservice_carros.R;
+import aulas.ddmi.webservice_carros.activity.CarroActivity;
 import aulas.ddmi.webservice_carros.model.Carro;
-import aulas.ddmi.webservice_carros.model.CarroService;
-import aulas.ddmi.webservice_carros.util.AlertUtils;
+import aulas.ddmi.webservice_carros.service.CarroService;
 
 /**
  * Created by vagner on 25/05/16.
  */
-public class NovoCarroFragment extends Fragment {
+public class NovoCarroFragment extends BaseFragment {
 
     private final String TAG = "Webservice_Carros"; //TAG para o LogCat
     private Carro carro; //uma instância da classe Carro com escopo global para utilização em membros da classe
@@ -140,7 +139,7 @@ public class NovoCarroFragment extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
             //emite uma caixa processando
-            AlertUtils.showWait(getContext(), R.string.app_name, R.string.progressdialog_wait);
+            showWait(getContext(), R.string.app_name, R.string.progressdialog_wait);
         }
 
         @Override
@@ -159,9 +158,9 @@ public class NovoCarroFragment extends Fragment {
         protected void onPostExecute(Boolean aBoolean) {
             super.onPostExecute(aBoolean);
             if(aBoolean){
-                AlertUtils.dismissWait(); //fecha a caixa processando
+                dismissWait(); //fecha a caixa processando
                 //faz aparecer uma caixa de diálogo confirmando a operação
-                AlertUtils.showOk(getContext(), R.string.app_name, R.string.alertdialog_message_rest);
+                alertDialog(getContext(), R.string.title_confirmacao, R.string.msg_realizadocomsucesso);
                 //volta para a lista de carros
                 getActivity().finish();
             }

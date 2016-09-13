@@ -1,4 +1,4 @@
-package aulas.ddmi.webservice_carros.rest;
+package aulas.ddmi.webservice_carros.service;
 
 public class Response {
     private String status;

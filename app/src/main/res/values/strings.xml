@@ -15,7 +15,7 @@
     <string name="nav_sobre">Sobre</string>
     <string name="nav_configuracoes">Configurações</string>
 
-    <!-- Menu em menu_fragment_listcarro.xml -->
+    <!-- Menu em menu_fragment_carros -->
     <string name="action_pesquisar">Pesquisar</string>
     <string name="action_novo">Novo</string>
 
@@ -38,6 +38,9 @@
     <string name="tabs_esportivos">Esportivos</string>
     <string name="tabs_luxo">Luxo</string>
 
+    <!-- SearchView -->
+    <string name="hint_searchview">pesquisar por nome</string>
+
     <!-- Textos para os layouts dos Fragmentos Novo, Detalhe e Edicao -->
     <string name="tipo_textview">Tipo:</string>
     <string name="nome_textview">Nome:</string>
@@ -49,10 +52,14 @@
     <string name="urlfoto_textview">URL Foto</string>
     <string name="urlvideo_textview">URL Vídeo</string>
 
-    <!-- Alert Dialog, util.AlertUtils.java-->
-    <string name="alertdialog_message_rest">Operação realizada com sucesso.</string>
-    <string name="alertdialog_buttom_ok">OK</string>
-    <string name="alertdialog_message_erro_download">Falha ao executar o download.</string>
+    <!-- Alert Dialog -->
+    <string name="title_conectividade">Alerta de conectividade.</string>
+    <string name="msg_conectividade">Não há conexão com a internet. Vefirique se você ligou o wi-fi ou os dados móveis.</string>
+    <string name="title_erro">Erro</string>
+    <string name="msg_erro_falhanodownload">Falha ao executar o download.</string>
+    <string name="title_confirmacao">Confirmação</string>
+    <string name="msg_realizadocomsucesso">Operação realizada com sucesso.</string>
+
 
     <!-- ProgressDialog -->
     <string name="progressdialog_wait">Processando ... Aguarde.</string>

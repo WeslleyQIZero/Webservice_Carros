@@ -1,4 +1,4 @@
-package aulas.ddmi.webservice_carros.model;
+package aulas.ddmi.webservice_carros.service;
 
 import android.util.Log;
 
@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import aulas.ddmi.webservice_carros.rest.Response;
+import aulas.ddmi.webservice_carros.model.Carro;
 import aulas.ddmi.webservice_carros.util.HttpHelper;
 
 import java.lang.reflect.Type;

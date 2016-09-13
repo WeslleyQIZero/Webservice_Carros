@@ -5,11 +5,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.Log;
 
 import aulas.ddmi.webservice_carros.R;
-import aulas.ddmi.webservice_carros.control.ListCarrosFragment;
-import aulas.ddmi.webservice_carros.model.ServiceBase;
+import aulas.ddmi.webservice_carros.fragment.CarrosFragment;
 
 /**
  * Adaptador para o ViewPager.
@@ -34,19 +32,19 @@ public class TabsAdapter extends FragmentPagerAdapter {
 
         switch (position){
             case 0:
-                f = new ListCarrosFragment(); //controlador para a aba de índice zero
+                f = new CarrosFragment(); //controlador para a aba de índice zero
                 args.putString("tipo", context.getString(R.string.tipo_todos));
                 break;
             case 1:
-                f = new ListCarrosFragment(); //controlador para a aba de índice um
+                f = new CarrosFragment(); //controlador para a aba de índice um
                 args.putString("tipo", context.getString(R.string.tipo_classicos));
                 break;
             case 2:
-                f = new ListCarrosFragment(); //controlador para a aba de índice dois
+                f = new CarrosFragment(); //controlador para a aba de índice dois
                 args.putString("tipo", context.getString(R.string.tipo_esportivos));
                 break;
             case 3:
-                f = new ListCarrosFragment(); //controlador para a aba de índice três
+                f = new CarrosFragment(); //controlador para a aba de índice três
                 args.putString("tipo", context.getString(R.string.tipo_luxo));
                 break;
         }

@@ -42,7 +42,7 @@
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/google_maps_key" />
 
 
-        <activity android:name=".control.CarrosActivity" android:label="@string/app_name"
+        <activity android:name=".activity.CarrosActivity" android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -51,9 +51,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".control.CarroActivity"
+        <activity android:name=".activity.CarroActivity"
             android:screenOrientation="portrait"
-            android:parentActivityName=".control.CarrosActivity">
+            android:parentActivityName=".activity.CarrosActivity">
 
         </activity>
 

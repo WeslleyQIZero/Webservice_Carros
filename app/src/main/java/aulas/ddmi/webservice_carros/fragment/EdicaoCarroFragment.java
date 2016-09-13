@@ -1,8 +1,7 @@
-package aulas.ddmi.webservice_carros.control;
+package aulas.ddmi.webservice_carros.fragment;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,16 +20,15 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 
 import aulas.ddmi.webservice_carros.R;
+import aulas.ddmi.webservice_carros.activity.CarroActivity;
 import aulas.ddmi.webservice_carros.model.Carro;
-import aulas.ddmi.webservice_carros.model.CarroService;
-import aulas.ddmi.webservice_carros.util.AlertUtils;
+import aulas.ddmi.webservice_carros.service.CarroService;
 
 /**
  * Created by vagner on 15/05/16.
  */
-public class EdicaoCarroFragment extends Fragment {
+public class EdicaoCarroFragment extends BaseFragment {
 
-    private final String TAG = "Webservice_Carros"; //TAG para o LogCat
     private Carro carro; //uma instância da classe Carro com escopo global para utilização em membros da classe
     private ProgressBar progressBarRest;  //uma progressbar para informar o processamento REST
     //componentes <-> objeto carro
@@ -41,6 +39,10 @@ public class EdicaoCarroFragment extends Fragment {
     private EditText editTextLongitude; //campo referente ao atributo longitude do objeto carro
 
 
+    //utilizado pelo Fragment para repassar o objeto carro clicado na lista pelo user
+    public void setCarro(Carro carro) {
+        this.carro = carro;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,9 +59,8 @@ public class EdicaoCarroFragment extends Fragment {
 
         ((CarroActivity) getActivity()).getSupportActionBar().setTitle(R.string.title_fragment_edicaocarro);  //um título para a janela
 
-        //obtém o objeto passado como argumento na chamada deste fragment
-        carro = CarrosActivity.carro;
-        Log.d(TAG, "Dados do registro = " + carro); //um log para depurar
+        //um log para depurar
+        Log.d(TAG, "Dados do registro = " + carro);
 
         //carrega a imagem e controla o progressbar
         Log.d(TAG, "URL foto = " + carro.urlFoto); //um log para depurar
@@ -191,7 +192,7 @@ public class EdicaoCarroFragment extends Fragment {
             if(aBoolean){
                 progressBarRest.setVisibility(View.INVISIBLE); //faz desaparecer a ProgressBar
                 //faz aparecer uma caixa de diálogo confirmando a operação
-                AlertUtils.showOk(getContext(), R.string.app_name, R.string.alertdialog_message_rest);
+                alertDialog(getContext(), R.string.title_confirmacao, R.string.msg_realizadocomsucesso);
                 //volta para a lista de carros
                 getActivity().finish();
             }
