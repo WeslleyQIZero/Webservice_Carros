@@ -16,12 +16,12 @@ import java.lang.reflect.Type;
 
 
 /**
- *  Esta classe realiza o "parser" dos dados oriundos do web service no formato JSON para uma List.
+ *  Esta classe realiza o "parse" dos dados oriundos do web service no formato JSON para uma List.
  *  @author Vagner Pinto da Silva, baseado em Lecheta(2015).
  */
 
 
-public class CarroService extends ServiceBase{
+public class CarroService extends BaseService {
 
     /*
         Obtém a lista de carros em JSON do web service e converte para List<Carro>.

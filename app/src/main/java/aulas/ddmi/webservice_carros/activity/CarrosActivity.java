@@ -18,7 +18,7 @@ import aulas.ddmi.webservice_carros.R;
 import aulas.ddmi.webservice_carros.adapter.TabsAdapter;
 
 /**
- * Esta classe é um container para o fragmento CarrosFragment.
+ * Esta Activity inicializa a app. O seu conteúdo é controlado pelo fragmento CarrosFragment.
  * Created by vagner on 11/08/16.
  */
 public class CarrosActivity extends BaseActivity
@@ -42,10 +42,8 @@ public class CarrosActivity extends BaseActivity
 
         //mapeia a Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //a adiciona na Actionbar
+        //insere a ToolBar como ActionBar (o estilo deve estar como .NoActionBar, veja o arquivo values/styles).
         setSupportActionBar(toolbar);
-        //habilita a navegação pelo botão esquerdo da ActionBar (padrão Android)
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //mapeia o FloatButton
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -98,6 +96,16 @@ public class CarrosActivity extends BaseActivity
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setOnTabSelectedListener(this);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     /*
