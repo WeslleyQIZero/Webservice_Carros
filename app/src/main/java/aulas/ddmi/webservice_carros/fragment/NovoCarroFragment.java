@@ -136,9 +136,12 @@ public class NovoCarroFragment extends BaseFragment {
                 }
                 break;
             }
+            case android.R.id.home:
+                getActivity().finish();
+                break;
         }
 
-        return false;
+        return true;
     }
 
     /**

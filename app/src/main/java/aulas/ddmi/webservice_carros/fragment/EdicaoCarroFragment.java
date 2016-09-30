@@ -180,8 +180,12 @@ public class EdicaoCarroFragment extends BaseFragment {
                 new CarrosTask().execute("delete"); //executa a operação REST DELETE em uma thread AsyncTask
                 break;
             }
+            case android.R.id.home:
+                getActivity().finish();
+                break;
         }
-        return false;
+
+        return true;
     }
 
     /**

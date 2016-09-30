@@ -176,6 +176,9 @@ public class DetalheCarroFragment extends BaseFragment implements OnMapReadyCall
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, edicaocarroFragment).commit();
                 break;
             }
+            case android.R.id.home:
+                getActivity().finish();
+                break;
         }
 
         return false;
