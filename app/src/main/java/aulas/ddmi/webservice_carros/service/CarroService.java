@@ -27,7 +27,10 @@ public class CarroService extends BaseService {
         Obtém a lista de carros em JSON do web service e converte para List<Carro>.
      */
     public static List<Carro> getCarros(String url) throws IOException {
-        String json = new HttpHelper().doGet(URL_BASE + url); //obtém o objeto JSON do servidor através de um GET
+        HttpHelper http = new HttpHelper(); //Cria uma instância de util.HpptHelper
+        http.setContentType("application/json; charset=utf-8"); //seta o Content-Type e a codificação de caracteres
+
+        String json = http.doGet(URL_BASE + url); //obtém o objeto JSON do servidor através de um GET
 
         //Converte JSON para um List
         Type listType = new TypeToken<ArrayList<Carro>>() {}.getType();
@@ -61,7 +64,6 @@ public class CarroService extends BaseService {
             throw new IOException("Erro ao excluir o registro: " + response.getMsg()); //lança uma exceção se o retorno do servidor não for 200 (ok)
         }
 
-        // A fazer
         return true;
     }
 

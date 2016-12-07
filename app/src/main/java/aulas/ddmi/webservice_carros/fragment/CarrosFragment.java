@@ -80,7 +80,7 @@ public class CarrosFragment extends BaseFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         //infla o xml da UI e associa ao Fragment
-        View view = inflater.inflate(R.layout.fragment_listcarros, container, false);
+        View view = inflater.inflate(R.layout.fragment_carros, container, false);
 
         //um título para a janela
         ((CarrosActivity) getActivity()).getSupportActionBar().setTitle(R.string.title_fragment_listcarros);
