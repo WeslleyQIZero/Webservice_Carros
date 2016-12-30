@@ -246,9 +246,7 @@ public class CarroEdicaoFragment extends BaseFragment {
             super.onPostExecute(aBoolean);
             if(aBoolean){
                 //faz aparecer uma caixa de diálogo confirmando a operação
-                alertOk(getContext(), R.string.title_confirmacao, R.string.msg_realizadocomsucesso);
-                //volta para a lista de carros
-                getActivity().finish();
+                alertOk(R.string.title_confirmacao, R.string.msg_realizadocomsucesso);
             }
         }
     }//fim classe interna

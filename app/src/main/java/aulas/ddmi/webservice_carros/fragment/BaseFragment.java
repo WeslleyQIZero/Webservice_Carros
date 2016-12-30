@@ -1,14 +1,16 @@
 package aulas.ddmi.webservice_carros.fragment;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
+
+import aulas.ddmi.webservice_carros.R;
+import aulas.ddmi.webservice_carros.activity.CarroActivity;
 
 /**
  * Created by vagner on 13/09/16.
@@ -25,18 +27,20 @@ public class BaseFragment extends Fragment {
     }
 
     //Mensagem de alerta com botão Ok
-    public static void alertOk(final Context context, final int title, final int mensagem) {
-        try {
-            AlertDialog dialog = new AlertDialog.Builder(context).setTitle(title).setMessage(mensagem).create();
-            dialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-
+    protected void alertOk(int title, int message) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext()); //cria um buider
+        builder.setTitle(title).setMessage(message); //insere o título e a mensagem
+        // Adiciona o botão e trata o evento onClick
+        builder.setPositiveButton(R.string.alertdialog_buttom_ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                if(getActivity() instanceof CarroActivity){
+                    getActivity().finish();
                 }
-            });
-            dialog.show();
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage(), e);
-        }
+            }
+        });
+        AlertDialog dialog = builder.create(); //cria o alerta
+        dialog.show(); //apresenta a caixa de diálogo
+
     }
 
     //Emite uma ProgressDialog

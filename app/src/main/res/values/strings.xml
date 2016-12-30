@@ -60,6 +60,7 @@
     <string name="msg_erro_falhanodownload">Falha ao executar o download.</string>
     <string name="title_confirmacao">Confirmação</string>
     <string name="msg_realizadocomsucesso">Operação realizada com sucesso.</string>
+    <string name="alertdialog_buttom_ok">OK</string>
 
 
     <!-- ProgressDialog -->

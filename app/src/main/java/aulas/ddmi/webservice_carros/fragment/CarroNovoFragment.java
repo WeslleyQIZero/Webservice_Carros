@@ -195,7 +195,7 @@ public class CarroNovoFragment extends BaseFragment {
             if(aBoolean){
                 dismissWait(); //fecha a caixa processando
                 //faz aparecer uma caixa de diálogo confirmando a operação
-                alertOk(getContext(), R.string.title_confirmacao, R.string.msg_realizadocomsucesso);
+                alertOk(R.string.title_confirmacao, R.string.msg_realizadocomsucesso);
                 //volta para a lista de carros
                 getActivity().finish();
             }

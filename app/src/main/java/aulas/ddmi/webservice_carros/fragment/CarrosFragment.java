@@ -73,9 +73,23 @@ public class CarrosFragment extends BaseFragment
         getActivity().finish(); //finaliza a app
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        //se houver conexão com a internet, wi-fi ou 3G ...
+        if (isNetworkAvailable(getContext())) {
+            new CarrosTask().execute(); //executa a operação REST GET em uma thread AsyncTask
+        } else{
+            progressBar.setVisibility(View.INVISIBLE);
+            if(CarrosFragment.this.tipo.equals(getString(R.string.tipo_classicos))) {
+                alertOk(R.string.title_conectividade, R.string.msg_conectividade);
+            }
+        }
+    }
+
     /*
-        Método do ciclo de vida do Fragment.
-     */
+            Método do ciclo de vida do Fragment.
+         */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -101,13 +115,6 @@ public class CarrosFragment extends BaseFragment
 
         //Cria um ProgressBar para mostrar uma animação de processando
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
-
-        //se houver conexão com a internet, wi-fi ou 3G ...
-        if (isNetworkAvailable(getContext())) {
-            new CarrosTask().execute(); //executa a operação REST GET em uma thread AsyncTask
-        } else {
-            alertOk(getContext(), R.string.title_conectividade, R.string.msg_conectividade);
-        }
 
         return view;
 
@@ -212,7 +219,7 @@ public class CarrosFragment extends BaseFragment
                 //faz com que a ProgressBar desapareça para o usuário
                 progressBar.setVisibility(View.INVISIBLE);
                 //avisa o usuário da falha no download
-                alertOk(getContext(), R.string.title_erro, R.string.msg_erro_falhanodownload); //faz aparecer o AlertDialog para o usuário
+                alertOk(R.string.title_erro, R.string.msg_erro_falhanodownload); //faz aparecer o AlertDialog para o usuário
             }
         }
     }
@@ -252,7 +259,7 @@ public class CarrosFragment extends BaseFragment
                 if (isNetworkAvailable(getContext())) { //se houver conexão com a internet, wi-fi ou 3G ...
                     new CarrosTask().execute(); //cria uma instância de AsyncTask
                 } else {
-                    alertOk(getContext(), R.string.title_conectividade, R.string.msg_conectividade);
+                    alertOk(R.string.title_conectividade, R.string.msg_conectividade);
                     recyclerView.setAdapter(new CarroAdapter(getContext(), new ArrayList<Carro>(), onClickCarro()));
                 }
 
