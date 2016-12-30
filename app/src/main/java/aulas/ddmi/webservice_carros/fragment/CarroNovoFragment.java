@@ -27,7 +27,7 @@ import aulas.ddmi.webservice_carros.service.CarroService;
 /**
  * Created by vagner on 25/05/16.
  */
-public class NovoCarroFragment extends BaseFragment {
+public class CarroNovoFragment extends BaseFragment {
 
     private final String TAG = "Webservice_Carros"; //TAG para o LogCat
     private Carro carro; //uma instância da classe Carro com escopo global para utilização em membros da classe

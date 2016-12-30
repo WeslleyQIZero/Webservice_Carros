@@ -29,7 +29,7 @@ import aulas.ddmi.webservice_carros.service.CarroService;
 /**
  * Created by vagner on 15/05/16.
  */
-public class EdicaoCarroFragment extends BaseFragment {
+public class CarroEdicaoFragment extends BaseFragment {
 
     private Carro carro; //uma instância da classe Carro com escopo global para utilização em membros da classe
     //componentes <-> objeto carro

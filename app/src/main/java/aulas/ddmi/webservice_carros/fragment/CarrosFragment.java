@@ -235,7 +235,7 @@ public class CarrosFragment extends BaseFragment
                 //insere um extra com a referência para o objeto Carro
                 intent.putExtra("carro", carro);
                 //indica para a outra Activity qual o fragmento deve abrir
-                intent.putExtra("qualFragmentAbrir", "DetalheCarroFragment");
+                intent.putExtra("qualFragmentAbrir", "CarroDetalheFragment");
                 //chama outra Activity
                 startActivity(intent);
             }

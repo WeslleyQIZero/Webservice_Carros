@@ -54,7 +54,7 @@ public class CarrosActivity extends BaseActivity
                 //configura uma Intent explícita
                 Intent intent = new Intent(CarrosActivity.this, CarroActivity.class);
                 //indica para a outra Activity qual o fragmento deve abrir
-                intent.putExtra("qualFragmentAbrir", "NovoCarroFragment");
+                intent.putExtra("qualFragmentAbrir", "CarroNovoFragment");
                 //chama outra Activity
                 startActivity(intent);
             }

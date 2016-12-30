@@ -4,13 +4,13 @@ import android.os.Bundle;
 import android.util.Log;
 
 import aulas.ddmi.webservice_carros.R;
-import aulas.ddmi.webservice_carros.fragment.DetalheCarroFragment;
-import aulas.ddmi.webservice_carros.fragment.NovoCarroFragment;
+import aulas.ddmi.webservice_carros.fragment.CarroDetalheFragment;
+import aulas.ddmi.webservice_carros.fragment.CarroNovoFragment;
 import aulas.ddmi.webservice_carros.model.Carro;
 
 /**
- * Esta classe é um container para os fragmentos NovoCarroFragment, DetalheCarroFragment
- * e EdicaoCarroFragment.
+ * Esta classe é um container para os fragmentos CarroNovoFragment, CarroDetalheFragment
+ * e CarroEdicaoFragment.
  * Created by vagner on 11/08/16.
  */
 public class CarroActivity extends BaseActivity {
@@ -24,11 +24,11 @@ public class CarroActivity extends BaseActivity {
 
         //obtém do extras da intent recebida o fragmento que ela deve abrir
         String msg = (String) getIntent().getCharSequenceExtra("qualFragmentAbrir");
-        if(msg.equals("NovoCarroFragment")){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new NovoCarroFragment()).commit();
-        }else if(msg.equals("DetalheCarroFragment")){
+        if(msg.equals("CarroNovoFragment")){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CarroNovoFragment()).commit();
+        }else if(msg.equals("CarroDetalheFragment")){
             //constrói uma instância do Fragment CarroDetalheFragment
-            DetalheCarroFragment carroDetalheFragment = new DetalheCarroFragment();
+            CarroDetalheFragment carroDetalheFragment = new CarroDetalheFragment();
             //insere o fragmento como conteúdo de content_main.xml
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, carroDetalheFragment).commit();
             //obtém o carro que foi repassado pela CarrosActivity ao chamar esta Activity

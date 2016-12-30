@@ -2,7 +2,6 @@ package aulas.ddmi.webservice_carros.fragment;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -37,7 +36,7 @@ import aulas.ddmi.webservice_carros.model.Carro;
 /**
  * Created by vagner on 28/05/16.
  */
-public class DetalheCarroFragment extends BaseFragment implements OnMapReadyCallback {
+public class CarroDetalheFragment extends BaseFragment implements OnMapReadyCallback {
 
     private Carro carro; //uma instância da classe Carro com escopo global para utilização em membros da classe
     //componentes <-> objeto carro
@@ -171,9 +170,9 @@ public class DetalheCarroFragment extends BaseFragment implements OnMapReadyCall
         switch (item.getItemId()) {
             case R.id.menuitem_editar: {
                 //Substitui o Fragmento no container R.id.fragment_container, componente do layout content_main.xml
-                EdicaoCarroFragment edicaocarroFragment = new EdicaoCarroFragment();
-                edicaocarroFragment.setCarro(this.carro);
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, edicaocarroFragment).commit();
+                CarroEdicaoFragment edicaocarroEdicaoFragment = new CarroEdicaoFragment();
+                edicaocarroEdicaoFragment.setCarro(this.carro);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, edicaocarroEdicaoFragment).commit();
                 break;
             }
             case android.R.id.home:
